@@ -5,6 +5,7 @@ import glob
 import os
 import shutil
 import json
+import re #for regular expression
 
 
 try:
@@ -14,17 +15,20 @@ except OSError:
 
 # Get a list of receipts
 
-receipts = glob.glob('./new/receipt-[0-9]*.json')
+#receipts = glob.glob('./new/receipt-[0-9]*.json')
+
+#EVEN RECEIPTS using iglob (iterators)
+receipts = [f for f in glob.iglob('./new/receipt-[0-9]*.json') if re.match('./new/receipt-[0-9]*[02468].json',f)]
+
 subtotal = 0.0
 
 for file_path in receipts:
     with open(file_path) as f:
         content = json.load(f)
         subtotal += float(content['value'])
-        file_name = file_path.split('/')[-1] #-1 to get the last element
-        destination = "./processed/%s" % file_name
+        destination = file_path.replace('new','processed')
         shutil.move(file_path, destination)
-        print("Moved '%s' to '%s'" % (file_name, destination))
+        print("Moved '%s' to '%s'" % (file_path, destination))
 
 print("Receipt subtotal is %.2f" % subtotal)
 #Iterate over receipts
