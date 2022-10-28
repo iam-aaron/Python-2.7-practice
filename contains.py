@@ -7,7 +7,7 @@ parser.add_argument('snippet', help="partial (or complete) string to search for 
 args = parser.parse_args()
 snippet = args.snippet.lower()
 
-words = open("/usr/share/dict/words").readlines()
+words = open("/usr/share/dict/words").readlines() #dictionary in our machine
 
 # APPROACH 1
 # matches = []
@@ -17,4 +17,5 @@ words = open("/usr/share/dict/words").readlines()
 #         matches.append(word.strip())
 # print(matches)
 
+# APPROACH 2 List comprehension
 print([word.strip() for word in words if snippet in word.lower()]) #list comprehension version
