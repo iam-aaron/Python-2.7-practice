@@ -6,4 +6,4 @@ print("Before Exit")
 
 sys.exit(1) #You can set any number status code here
 
-print("After Exit")
+print("After Exit") #this will be unreachable
