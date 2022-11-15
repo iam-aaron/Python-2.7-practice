@@ -9,8 +9,14 @@ setup(
     description='Database backup for S3 or local.',
     long_description=readme,
     author='Aaron Medina',
-    author_email='aaronmedina30@gmail.com'
+    author_email='aaronmedina30@gmail.com',
     packages=find_packages('src'),
     package_dir={'': 'src'},
-    install_requires=[]
+    install_requires=['boto3'],
+    entry_points={
+        'console_scripts': [
+            'pgbackup=pgbackup.cli:main',
+
+        ]
+    }
 )

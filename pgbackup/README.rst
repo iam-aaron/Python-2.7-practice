@@ -18,12 +18,12 @@ Pass in a full database URL, the storage driver, and destination.
 S3 Example w/ bucket name:
 
 ::
-	$ pgbackup postgres://user@example-domain.com:5432/db_one --driver s3 backups
+	$ pgbackup --driver s3 pytest-db-backup postgres://demo-user:password@44.207.7.28:80/sample
 
 Local Example w/ local path:
 	
 ::
-	$ pgbackup postgres://user@example-domain.com:5432/db_one --driver local /var/local/db_one/backups/dump.sql
+	$ pgbackup --driver local ./local-dump.sql postgres://demo-user:password@44.207.7.28:80/sample
 
 Running Tests
 -------------
